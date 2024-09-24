@@ -1,10 +1,23 @@
 let harmonics = [...Array(16).keys()].map(k => k + 1)   // https://stackoverflow.com/questions/3895478/
 
-const keymap = {
+const qwertyKeymap = {
     'a': 220,       's': 246.94,    'd': 277.18,
     'f': 293.66,    'j': 329.63,    'k': 369.99,
     'l': 415.30,    ';': 440
 }
+
+const colemakKeymap = {
+    'a': 220,       'r': 246.94,    's': 277.18,
+    't': 293.66,    'n': 329.63,    'e': 369.99,
+    'i': 415.30,    'o': 440
+}
+
+const dvorakKeymap = {
+    'a': 220,       'o': 246.94,    'e': 277.18,
+    'u': 293.66,    'h': 329.63,    't': 369.99,
+    'n': 415.30,    's': 440
+}
+
 
 const context = new AudioContext()
 
@@ -93,11 +106,24 @@ getKeyPressed = (event) => {
 getFrequency = (event) => {
     const key = getKeyPressed(event).replace(':', ';')
     const octiveMultiplier = event.shiftKey ? 2 : 1
+    const keymap = getKeymap()
 
     if (key in keymap)
         return keymap[key] * octiveMultiplier
     else if (key === ' ')
         return note.frequency * Math.pow(2, 1 / 12) // adjust the old note slightly
+}
+
+getKeymap = () => {
+    const keymap = document.getElementById("keymap").value
+    switch (keymap) {
+        case "colemak":
+            return colemakKeymap
+        case "dvorak":
+            return dvorakKeymap
+        default:
+            return qwertyKeymap 
+    }
 }
 
 document.onkeydown = (event) => {
