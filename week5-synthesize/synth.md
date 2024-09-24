@@ -11,10 +11,10 @@ permalink: /synth
 
 &nbsp;
 
-### Type with the home row (asdfjkl;)
+### Type with the home row (e.g. asdfjkl; for Qwerty)
 
 <div style="display: flex">
-    <div style="width: 30%; height: 400px">
+    <div style="width: 30%; height: 500px">
         <br><br>
         <label for="harmonicsSlider">Number of Overtones</label><br>
         <input type="range" min="1" max="16" value="16" step="1" id="harmonicsSlider"><br><br>
@@ -23,7 +23,13 @@ permalink: /synth
         <label for="vibratoDepthSlider">Vibrato Depth</label><br>
         <input type="range" min="0.01" max="30" value="15" step="0.01" id="vibratoDepthSlider"><br><br>
         <label for="vibratoDelaySlider">Vibrato Onset Delay</label><br>
-        <input type="range" min="0.01" max="3" value="2" step="0.01" id="vibratoDelaySlider">
+        <input type="range" min="0.01" max="3" value="2" step="0.01" id="vibratoDelaySlider"><br><br>
+        <label>Keyboard Layout</label><br>
+        <select name="keymap" id="keymap">
+          <option value="qwerty" selected="selected">Qwerty</option>
+          <option value="colemak">Colemak</option>
+          <option value="dvorak">Dvorak</option>
+        </select>
     </div>
     <div id="harmonicsPlot" style="flex-grow: 1"></div>
 </div>
